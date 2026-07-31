@@ -10,33 +10,141 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AkademiRouteImport } from './routes/akademi'
+import { Route as AlatRouteImport } from './routes/alat'
+import { Route as DompetRouteImport } from './routes/dompet'
+import { Route as JamaahRouteImport } from './routes/jamaah'
+import { Route as JaringanRouteImport } from './routes/jaringan'
+import { Route as LeaderboardRouteImport } from './routes/leaderboard'
+import { Route as MuslimRouteImport } from './routes/muslim'
+import { Route as TeritorialRouteImport } from './routes/teritorial'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AkademiRoute = AkademiRouteImport.update({
+  id: '/akademi',
+  path: '/akademi',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AlatRoute = AlatRouteImport.update({
+  id: '/alat',
+  path: '/alat',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DompetRoute = DompetRouteImport.update({
+  id: '/dompet',
+  path: '/dompet',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JamaahRoute = JamaahRouteImport.update({
+  id: '/jamaah',
+  path: '/jamaah',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JaringanRoute = JaringanRouteImport.update({
+  id: '/jaringan',
+  path: '/jaringan',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LeaderboardRoute = LeaderboardRouteImport.update({
+  id: '/leaderboard',
+  path: '/leaderboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MuslimRoute = MuslimRouteImport.update({
+  id: '/muslim',
+  path: '/muslim',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TeritorialRoute = TeritorialRouteImport.update({
+  id: '/teritorial',
+  path: '/teritorial',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/akademi': typeof AkademiRoute
+  '/alat': typeof AlatRoute
+  '/dompet': typeof DompetRoute
+  '/jamaah': typeof JamaahRoute
+  '/jaringan': typeof JaringanRoute
+  '/leaderboard': typeof LeaderboardRoute
+  '/muslim': typeof MuslimRoute
+  '/teritorial': typeof TeritorialRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/akademi': typeof AkademiRoute
+  '/alat': typeof AlatRoute
+  '/dompet': typeof DompetRoute
+  '/jamaah': typeof JamaahRoute
+  '/jaringan': typeof JaringanRoute
+  '/leaderboard': typeof LeaderboardRoute
+  '/muslim': typeof MuslimRoute
+  '/teritorial': typeof TeritorialRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/akademi': typeof AkademiRoute
+  '/alat': typeof AlatRoute
+  '/dompet': typeof DompetRoute
+  '/jamaah': typeof JamaahRoute
+  '/jaringan': typeof JaringanRoute
+  '/leaderboard': typeof LeaderboardRoute
+  '/muslim': typeof MuslimRoute
+  '/teritorial': typeof TeritorialRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/akademi'
+    | '/alat'
+    | '/dompet'
+    | '/jamaah'
+    | '/jaringan'
+    | '/leaderboard'
+    | '/muslim'
+    | '/teritorial'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/akademi'
+    | '/alat'
+    | '/dompet'
+    | '/jamaah'
+    | '/jaringan'
+    | '/leaderboard'
+    | '/muslim'
+    | '/teritorial'
+  id:
+    | '__root__'
+    | '/'
+    | '/akademi'
+    | '/alat'
+    | '/dompet'
+    | '/jamaah'
+    | '/jaringan'
+    | '/leaderboard'
+    | '/muslim'
+    | '/teritorial'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AkademiRoute: typeof AkademiRoute
+  AlatRoute: typeof AlatRoute
+  DompetRoute: typeof DompetRoute
+  JamaahRoute: typeof JamaahRoute
+  JaringanRoute: typeof JaringanRoute
+  LeaderboardRoute: typeof LeaderboardRoute
+  MuslimRoute: typeof MuslimRoute
+  TeritorialRoute: typeof TeritorialRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,22 +156,76 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/akademi': {
+      id: '/akademi'
+      path: '/akademi'
+      fullPath: '/akademi'
+      preLoaderRoute: typeof AkademiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/alat': {
+      id: '/alat'
+      path: '/alat'
+      fullPath: '/alat'
+      preLoaderRoute: typeof AlatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dompet': {
+      id: '/dompet'
+      path: '/dompet'
+      fullPath: '/dompet'
+      preLoaderRoute: typeof DompetRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/jamaah': {
+      id: '/jamaah'
+      path: '/jamaah'
+      fullPath: '/jamaah'
+      preLoaderRoute: typeof JamaahRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/jaringan': {
+      id: '/jaringan'
+      path: '/jaringan'
+      fullPath: '/jaringan'
+      preLoaderRoute: typeof JaringanRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/leaderboard': {
+      id: '/leaderboard'
+      path: '/leaderboard'
+      fullPath: '/leaderboard'
+      preLoaderRoute: typeof LeaderboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/muslim': {
+      id: '/muslim'
+      path: '/muslim'
+      fullPath: '/muslim'
+      preLoaderRoute: typeof MuslimRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/teritorial': {
+      id: '/teritorial'
+      path: '/teritorial'
+      fullPath: '/teritorial'
+      preLoaderRoute: typeof TeritorialRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AkademiRoute: AkademiRoute,
+  AlatRoute: AlatRoute,
+  DompetRoute: DompetRoute,
+  JamaahRoute: JamaahRoute,
+  JaringanRoute: JaringanRoute,
+  LeaderboardRoute: LeaderboardRoute,
+  MuslimRoute: MuslimRoute,
+  TeritorialRoute: TeritorialRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
