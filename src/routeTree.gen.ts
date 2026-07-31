@@ -10,33 +10,63 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AkademiRouteImport } from './routes/akademi'
+import { Route as JamaahRouteImport } from './routes/jamaah'
+import { Route as TeritorialRouteImport } from './routes/teritorial'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AkademiRoute = AkademiRouteImport.update({
+  id: '/akademi',
+  path: '/akademi',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JamaahRoute = JamaahRouteImport.update({
+  id: '/jamaah',
+  path: '/jamaah',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TeritorialRoute = TeritorialRouteImport.update({
+  id: '/teritorial',
+  path: '/teritorial',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/akademi': typeof AkademiRoute
+  '/jamaah': typeof JamaahRoute
+  '/teritorial': typeof TeritorialRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/akademi': typeof AkademiRoute
+  '/jamaah': typeof JamaahRoute
+  '/teritorial': typeof TeritorialRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/akademi': typeof AkademiRoute
+  '/jamaah': typeof JamaahRoute
+  '/teritorial': typeof TeritorialRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/akademi' | '/jamaah' | '/teritorial'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/akademi' | '/jamaah' | '/teritorial'
+  id: '__root__' | '/' | '/akademi' | '/jamaah' | '/teritorial'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AkademiRoute: typeof AkademiRoute
+  JamaahRoute: typeof JamaahRoute
+  TeritorialRoute: typeof TeritorialRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +78,35 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/akademi': {
+      id: '/akademi'
+      path: '/akademi'
+      fullPath: '/akademi'
+      preLoaderRoute: typeof AkademiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/jamaah': {
+      id: '/jamaah'
+      path: '/jamaah'
+      fullPath: '/jamaah'
+      preLoaderRoute: typeof JamaahRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/teritorial': {
+      id: '/teritorial'
+      path: '/teritorial'
+      fullPath: '/teritorial'
+      preLoaderRoute: typeof TeritorialRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AkademiRoute: AkademiRoute,
+  JamaahRoute: JamaahRoute,
+  TeritorialRoute: TeritorialRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
