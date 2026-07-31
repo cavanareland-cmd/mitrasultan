@@ -5,7 +5,7 @@ import {
   Coins,
   Crown,
   FileCheck2,
-  KaabaIcon,
+  Landmark,
   Users2,
   UserPlus,
 } from "lucide-react";
@@ -130,7 +130,7 @@ function DashboardPage() {
         <Card className="surface-luxe lg:col-span-2">
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-base">
-              <KaabaIcon className="size-5 text-primary" />
+              <Landmark className="size-5 text-primary" />
               Tracker Umrah Gratis
             </CardTitle>
           </CardHeader>
