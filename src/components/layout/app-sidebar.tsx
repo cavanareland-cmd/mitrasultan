@@ -9,8 +9,8 @@ import {
   Trophy,
   MoonStar,
   Calculator,
-  Sparkles,
 } from "lucide-react";
+import logoAsset from "@/assets/sultan-haramain-logo.png.asset.json";
 
 import {
   Sidebar,
