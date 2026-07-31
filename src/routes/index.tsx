@@ -29,7 +29,7 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: "Dashboard Mitra — Sultan Haramain Gresik" },
       {
         property: "og:description",
-        content: "Portal kemitraan Umrah: komisi, leads, target, dan agenda harian agen.",
+        content: "Pantau komisi, leads, target Umrah gratis, dan agenda harian Anda dalam satu dashboard kemitraan.",
       },
     ],
   }),
