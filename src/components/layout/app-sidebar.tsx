@@ -9,8 +9,8 @@ import {
   Trophy,
   MoonStar,
   Calculator,
-  Sparkles,
 } from "lucide-react";
+import logoAsset from "@/assets/sultan-haramain-logo.png.asset.json";
 
 import {
   Sidebar,
@@ -50,8 +50,12 @@ export function AppSidebar() {
     <Sidebar collapsible="icon">
       <SidebarHeader className="border-b border-sidebar-border">
         <div className="flex items-center gap-3 px-1 py-2">
-          <div className="grid size-9 shrink-0 place-items-center rounded-xl bg-primary text-primary-foreground">
-            <Sparkles className="size-5" />
+          <div className="grid size-9 shrink-0 place-items-center rounded-xl border border-primary/30 bg-secondary/60 p-1">
+            <img
+              src={logoAsset.url}
+              alt="Logo Sultan Haramain"
+              className="size-full object-contain"
+            />
           </div>
           <div className="min-w-0 group-data-[collapsible=icon]:hidden">
             <p className="truncate font-display text-base leading-tight font-semibold text-gold-gradient">

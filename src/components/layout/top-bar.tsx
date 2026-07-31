@@ -1,10 +1,11 @@
-import { Bell, Crown, Sparkles } from "lucide-react";
+import { Bell, Crown } from "lucide-react";
 
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { agent } from "@/lib/data";
+import logoAsset from "@/assets/sultan-haramain-logo.png.asset.json";
 
 /** Bar atas: logo, notifikasi, profil agen, dan ikon mahkota tier leaderboard. */
 export function TopBar() {
@@ -13,8 +14,12 @@ export function TopBar() {
       <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3 px-3 py-3 sm:px-6">
         <div className="flex min-w-0 items-center gap-3">
           <SidebarTrigger className="shrink-0" />
-          <div className="hidden size-9 shrink-0 place-items-center rounded-xl bg-primary text-primary-foreground sm:grid">
-            <Sparkles className="size-5" />
+          <div className="hidden size-10 shrink-0 place-items-center rounded-xl border border-primary/30 bg-secondary/60 p-1 sm:grid">
+            <img
+              src={logoAsset.url}
+              alt="Logo Mitra Center Sultan Haramain"
+              className="size-full object-contain"
+            />
           </div>
           <div className="min-w-0">
             <h1 className="truncate font-display text-lg leading-tight font-semibold sm:text-xl">
