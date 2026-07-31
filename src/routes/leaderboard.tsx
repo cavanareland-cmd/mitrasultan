@@ -45,7 +45,7 @@ function LeaderboardPage() {
   const daftar = leaderboard.filter((p) => ligaAktif === "Semua" || p.liga === ligaAktif);
   const podium = leaderboard.slice(0, 3);
   const saya = leaderboard.find((p) => p.saya)!;
-  const urutanPodium: Peringkat[] = [podium[1], podium[0], podium[2]];
+  const urutanPodium = [podium[1], podium[0], podium[2]].filter(Boolean) as Peringkat[];
 
   return (
     <div className="mx-auto max-w-5xl space-y-6 pb-24">

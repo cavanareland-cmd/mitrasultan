@@ -11,7 +11,10 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AkademiRouteImport } from './routes/akademi'
+import { Route as DompetRouteImport } from './routes/dompet'
 import { Route as JamaahRouteImport } from './routes/jamaah'
+import { Route as JaringanRouteImport } from './routes/jaringan'
+import { Route as LeaderboardRouteImport } from './routes/leaderboard'
 import { Route as TeritorialRouteImport } from './routes/teritorial'
 
 const IndexRoute = IndexRouteImport.update({
@@ -24,9 +27,24 @@ const AkademiRoute = AkademiRouteImport.update({
   path: '/akademi',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DompetRoute = DompetRouteImport.update({
+  id: '/dompet',
+  path: '/dompet',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const JamaahRoute = JamaahRouteImport.update({
   id: '/jamaah',
   path: '/jamaah',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JaringanRoute = JaringanRouteImport.update({
+  id: '/jaringan',
+  path: '/jaringan',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LeaderboardRoute = LeaderboardRouteImport.update({
+  id: '/leaderboard',
+  path: '/leaderboard',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TeritorialRoute = TeritorialRouteImport.update({
@@ -38,34 +56,68 @@ const TeritorialRoute = TeritorialRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/akademi': typeof AkademiRoute
+  '/dompet': typeof DompetRoute
   '/jamaah': typeof JamaahRoute
+  '/jaringan': typeof JaringanRoute
+  '/leaderboard': typeof LeaderboardRoute
   '/teritorial': typeof TeritorialRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/akademi': typeof AkademiRoute
+  '/dompet': typeof DompetRoute
   '/jamaah': typeof JamaahRoute
+  '/jaringan': typeof JaringanRoute
+  '/leaderboard': typeof LeaderboardRoute
   '/teritorial': typeof TeritorialRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/akademi': typeof AkademiRoute
+  '/dompet': typeof DompetRoute
   '/jamaah': typeof JamaahRoute
+  '/jaringan': typeof JaringanRoute
+  '/leaderboard': typeof LeaderboardRoute
   '/teritorial': typeof TeritorialRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/akademi' | '/jamaah' | '/teritorial'
+  fullPaths:
+    | '/'
+    | '/akademi'
+    | '/dompet'
+    | '/jamaah'
+    | '/jaringan'
+    | '/leaderboard'
+    | '/teritorial'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/akademi' | '/jamaah' | '/teritorial'
-  id: '__root__' | '/' | '/akademi' | '/jamaah' | '/teritorial'
+  to:
+    | '/'
+    | '/akademi'
+    | '/dompet'
+    | '/jamaah'
+    | '/jaringan'
+    | '/leaderboard'
+    | '/teritorial'
+  id:
+    | '__root__'
+    | '/'
+    | '/akademi'
+    | '/dompet'
+    | '/jamaah'
+    | '/jaringan'
+    | '/leaderboard'
+    | '/teritorial'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AkademiRoute: typeof AkademiRoute
+  DompetRoute: typeof DompetRoute
   JamaahRoute: typeof JamaahRoute
+  JaringanRoute: typeof JaringanRoute
+  LeaderboardRoute: typeof LeaderboardRoute
   TeritorialRoute: typeof TeritorialRoute
 }
 
@@ -85,11 +137,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AkademiRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dompet': {
+      id: '/dompet'
+      path: '/dompet'
+      fullPath: '/dompet'
+      preLoaderRoute: typeof DompetRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/jamaah': {
       id: '/jamaah'
       path: '/jamaah'
       fullPath: '/jamaah'
       preLoaderRoute: typeof JamaahRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/jaringan': {
+      id: '/jaringan'
+      path: '/jaringan'
+      fullPath: '/jaringan'
+      preLoaderRoute: typeof JaringanRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/leaderboard': {
+      id: '/leaderboard'
+      path: '/leaderboard'
+      fullPath: '/leaderboard'
+      preLoaderRoute: typeof LeaderboardRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/teritorial': {
@@ -105,7 +178,10 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AkademiRoute: AkademiRoute,
+  DompetRoute: DompetRoute,
   JamaahRoute: JamaahRoute,
+  JaringanRoute: JaringanRoute,
+  LeaderboardRoute: LeaderboardRoute,
   TeritorialRoute: TeritorialRoute,
 }
 export const routeTree = rootRouteImport
