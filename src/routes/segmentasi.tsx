@@ -168,7 +168,7 @@ function SegmentasiPage() {
 
       {/* Segmen aktif + condition builder */}
       <Card className="surface-luxe">
-        <CardHeader className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-3 sm:flex sm:items-center sm:justify-between">
+        <CardHeader className="flex flex-row items-center justify-between gap-3">
           <div className="min-w-0">
             <p className="text-xs tracking-wider text-muted-foreground uppercase">Segmen Aktif</p>
             <CardTitle className="font-display truncate text-xl">{aktif.nama}</CardTitle>
