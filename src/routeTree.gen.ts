@@ -17,6 +17,7 @@ import { Route as JamaahRouteImport } from './routes/jamaah'
 import { Route as JaringanRouteImport } from './routes/jaringan'
 import { Route as LeaderboardRouteImport } from './routes/leaderboard'
 import { Route as MuslimRouteImport } from './routes/muslim'
+import { Route as SegmentasiRouteImport } from './routes/segmentasi'
 import { Route as TeritorialRouteImport } from './routes/teritorial'
 
 const IndexRoute = IndexRouteImport.update({
@@ -59,6 +60,11 @@ const MuslimRoute = MuslimRouteImport.update({
   path: '/muslim',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SegmentasiRoute = SegmentasiRouteImport.update({
+  id: '/segmentasi',
+  path: '/segmentasi',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TeritorialRoute = TeritorialRouteImport.update({
   id: '/teritorial',
   path: '/teritorial',
@@ -74,6 +80,7 @@ export interface FileRoutesByFullPath {
   '/jaringan': typeof JaringanRoute
   '/leaderboard': typeof LeaderboardRoute
   '/muslim': typeof MuslimRoute
+  '/segmentasi': typeof SegmentasiRoute
   '/teritorial': typeof TeritorialRoute
 }
 export interface FileRoutesByTo {
@@ -85,6 +92,7 @@ export interface FileRoutesByTo {
   '/jaringan': typeof JaringanRoute
   '/leaderboard': typeof LeaderboardRoute
   '/muslim': typeof MuslimRoute
+  '/segmentasi': typeof SegmentasiRoute
   '/teritorial': typeof TeritorialRoute
 }
 export interface FileRoutesById {
@@ -97,6 +105,7 @@ export interface FileRoutesById {
   '/jaringan': typeof JaringanRoute
   '/leaderboard': typeof LeaderboardRoute
   '/muslim': typeof MuslimRoute
+  '/segmentasi': typeof SegmentasiRoute
   '/teritorial': typeof TeritorialRoute
 }
 export interface FileRouteTypes {
@@ -110,6 +119,7 @@ export interface FileRouteTypes {
     | '/jaringan'
     | '/leaderboard'
     | '/muslim'
+    | '/segmentasi'
     | '/teritorial'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -121,6 +131,7 @@ export interface FileRouteTypes {
     | '/jaringan'
     | '/leaderboard'
     | '/muslim'
+    | '/segmentasi'
     | '/teritorial'
   id:
     | '__root__'
@@ -132,6 +143,7 @@ export interface FileRouteTypes {
     | '/jaringan'
     | '/leaderboard'
     | '/muslim'
+    | '/segmentasi'
     | '/teritorial'
   fileRoutesById: FileRoutesById
 }
@@ -144,6 +156,7 @@ export interface RootRouteChildren {
   JaringanRoute: typeof JaringanRoute
   LeaderboardRoute: typeof LeaderboardRoute
   MuslimRoute: typeof MuslimRoute
+  SegmentasiRoute: typeof SegmentasiRoute
   TeritorialRoute: typeof TeritorialRoute
 }
 
@@ -205,6 +218,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MuslimRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/segmentasi': {
+      id: '/segmentasi'
+      path: '/segmentasi'
+      fullPath: '/segmentasi'
+      preLoaderRoute: typeof SegmentasiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/teritorial': {
       id: '/teritorial'
       path: '/teritorial'
@@ -224,6 +244,7 @@ const rootRouteChildren: RootRouteChildren = {
   JaringanRoute: JaringanRoute,
   LeaderboardRoute: LeaderboardRoute,
   MuslimRoute: MuslimRoute,
+  SegmentasiRoute: SegmentasiRoute,
   TeritorialRoute: TeritorialRoute,
 }
 export const routeTree = rootRouteImport

@@ -2,6 +2,7 @@ import { Link, useRouterState } from "@tanstack/react-router";
 import {
   LayoutDashboard,
   Users,
+  Filter,
   Map,
   GraduationCap,
   Network,
@@ -30,6 +31,7 @@ import { agent } from "@/lib/data";
 const menuUtama = [
   { judul: "Dashboard", url: "/", icon: LayoutDashboard },
   { judul: "Manajemen Jamaah", url: "/jamaah", icon: Users },
+  { judul: "Segmentasi Jamaah", url: "/segmentasi", icon: Filter },
   { judul: "Peta Teritorial", url: "/teritorial", icon: Map },
   { judul: "Akademi Kemitraan", url: "/akademi", icon: GraduationCap },
   { judul: "Jaringan Kemitraan", url: "/jaringan", icon: Network },
