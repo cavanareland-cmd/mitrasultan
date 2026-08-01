@@ -82,6 +82,25 @@ const legenda: { status: StatusTeritori; warna: string }[] = [
 
 const agenTersedia = ["Aisyah", "Fahmi", "Umi Kholifah", "Syaiful Anam"];
 
+// Helper untuk menerjemahkan status ke warna HEX SVG
+function getStatusFill(status?: StatusTeritori, isSelected?: boolean) {
+  if (isSelected) return "#eab308"; // Highlight kuning terang jika dipilih
+  switch (status) {
+    case "Aktif":
+      return "#d97706"; // Kuning / Amber
+    case "Tersedia":
+      return "#52525b"; // Abu-abu
+    case "Perencanaan":
+      return "#2563eb"; // Biru
+    case "Retargeting":
+      return "#ea580c"; // Oranye
+    case "Blacklist":
+      return "#dc2626"; // Merah
+    default:
+      return "#3f3f46";
+  }
+}
+
 function TeritorialPage() {
   const queryClient = useQueryClient();
   const { data } = useQuery(teritoriQueryOptions);
@@ -101,6 +120,14 @@ function TeritorialPage() {
   );
   const dipilih = semua.find((t) => t.id === idDipilih) ?? null;
   const totalPopulasi = wilayah.reduce((a, t) => a + t.populasi, 0);
+  const maxPopulasi = Math.max(1, ...wilayah.map((t) => t.populasi));
+
+  // Helper untuk mencocokkan data kecamatan dari database berdasarkan nama
+  const getKecData = (namaKecamatan: string) => {
+    return wilayah.find(
+      (t) => t.kecamatan.toLowerCase().replace(/[\s-]/g, "") === namaKecamatan.toLowerCase().replace(/[\s-]/g, "")
+    );
+  };
 
   const mutasiStatus = useMutation({
     mutationFn: ({ id, status }: { id: string; status: StatusTeritori }) =>
@@ -212,7 +239,7 @@ function TeritorialPage() {
           </Card>
         </div>
 
-        {/* Peta wilayah */}
+        {/* Peta wilayah interaktif */}
         <Card className="surface-luxe">
           <CardHeader className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3 sm:flex sm:justify-between">
             <CardTitle className="flex min-w-0 items-center gap-2 text-base">
@@ -226,15 +253,143 @@ function TeritorialPage() {
             </p>
           </CardHeader>
           <CardContent className="flex flex-col items-center">
-            <div className="relative flex w-full justify-center rounded-xl bg-background/50 p-2 shadow-inner sm:p-4">
-              <img
-                src="/map-gresik-dummy.png"
-                alt={`Peta Wilayah ${kota}`}
-                className="h-auto w-full max-w-2xl rounded-lg object-contain drop-shadow-xl"
-              />
+            <div className="relative flex w-full max-w-lg justify-center rounded-xl bg-background/50 p-2 shadow-inner sm:p-4">
+              {/* SVG Interaktif Kabupaten Gresik */}
+              <svg viewBox="0 0 500 700" className="w-full h-auto drop-shadow-xl select-none">
+                {/* Render Polygon per Kecamatan */}
+                {[
+                  { name: "Panceng", points: "40,70 130,60 145,135 55,145", cx: 92, cy: 105 },
+                  { name: "Ujung Pangkah", points: "130,60 235,50 225,140 145,135", cx: 185, cy: 95 },
+                  { name: "Dukun", points: "55,145 145,135 155,210 65,220", cx: 110, cy: 180 },
+                  { name: "Sidayu", points: "225,140 285,130 275,205 155,210", cx: 220, cy: 170 },
+                  { name: "Bungah", points: "155,210 275,205 255,285 175,275", cx: 215, cy: 245 },
+                  { name: "Duduksampeyan", points: "65,220 155,210 165,300 75,310", cx: 118, cy: 265 },
+                  { name: "Manyar", points: "255,285 345,275 325,355 245,345", cx: 295, cy: 315 },
+                  { name: "Gresik", points: "245,345 325,355 315,410 235,400", cx: 280, cy: 378 },
+                  { name: "Kebomas", points: "315,410 380,395 370,465 300,455", cx: 340, cy: 430 },
+                  { name: "Cerme", points: "165,300 245,345 235,425 155,410", cx: 200, cy: 370 },
+                  { name: "Benjeng", points: "75,310 165,300 155,410 65,420", cx: 115, cy: 365 },
+                  { name: "Balongpanggang", points: "20,320 75,310 65,420 15,410", cx: 45, cy: 365 },
+                  { name: "Kedamean", points: "65,420 155,410 165,490 75,500", cx: 115, cy: 455 },
+                  { name: "Menganti", points: "155,410 235,400 245,490 165,490", cx: 200, cy: 448 },
+                  { name: "Driyorejo", points: "245,490 335,480 325,560 235,570", cx: 285, cy: 525 },
+                  { name: "Wringinanon", points: "75,500 165,490 175,585 85,595", cx: 125, cy: 545 },
+                ].map((item) => {
+                  const dataKec = getKecData(item.name);
+                  const isSelected = dataKec ? idDipilih === dataKec.id : false;
+                  const fillColor = getStatusFill(dataKec?.status, isSelected);
+                  const popText = dataKec ? dataKec.populasi.toLocaleString("id-ID") : "";
+
+                  // Kalkulasi opacity jika fitur peta panas aktif
+                  let opacity = 1;
+                  if (panasPopulasi && dataKec) {
+                    opacity = 0.6 + (dataKec.populasi / maxPopulasi) * 0.4;
+                  }
+
+                  return (
+                    <g
+                      key={item.name}
+                      className="cursor-pointer transition-transform duration-150 hover:opacity-90"
+                      onClick={() => {
+                        if (dataKec) setIdDipilih(dataKec.id);
+                      }}
+                    >
+                      <polygon
+                        points={item.points}
+                        fill={fillColor}
+                        fillOpacity={opacity}
+                        stroke="#18181b"
+                        strokeWidth="2"
+                        className="transition-all hover:brightness-110"
+                      />
+                      <text
+                        x={item.cx}
+                        y={item.cy - 4}
+                        fill="#ffffff"
+                        fontSize="10"
+                        fontWeight="bold"
+                        textAnchor="middle"
+                        className="pointer-events-none drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]"
+                      >
+                        {item.name}
+                      </text>
+                      {popText && (
+                        <text
+                          x={item.cx}
+                          y={item.cy + 8}
+                          fill="#facc15"
+                          fontSize="9"
+                          fontWeight="semibold"
+                          textAnchor="middle"
+                          className="pointer-events-none drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]"
+                        >
+                          {popText}
+                        </text>
+                      )}
+                    </g>
+                  );
+                })}
+
+                {/* Inset Kepulauan Bawean (Tambak & Sangkapura) */}
+                <g transform="translate(320, 20) scale(0.65)">
+                  <rect x="0" y="0" width="230" height="135" fill="#09090b" stroke="#3f3f46" strokeWidth="2" rx="8" />
+                  <text x="115" y="18" fill="#a1a1aa" fontSize="10" fontWeight="bold" textAnchor="middle">
+                    KEPULAUAN BAWEAN
+                  </text>
+                  {[
+                    { name: "Sangkapura", points: "15,30 110,25 100,115 20,120", cx: 60, cy: 75 },
+                    { name: "Tambak", points: "110,25 215,30 205,120 100,115", cx: 155, cy: 75 },
+                  ].map((item) => {
+                    const dataKec = getKecData(item.name);
+                    const isSelected = dataKec ? idDipilih === dataKec.id : false;
+                    const fillColor = getStatusFill(dataKec?.status, isSelected);
+                    const popText = dataKec ? dataKec.populasi.toLocaleString("id-ID") : "";
+
+                    return (
+                      <g
+                        key={item.name}
+                        className="cursor-pointer hover:opacity-90"
+                        onClick={() => {
+                          if (dataKec) setIdDipilih(dataKec.id);
+                        }}
+                      >
+                        <polygon
+                          points={item.points}
+                          fill={fillColor}
+                          stroke="#18181b"
+                          strokeWidth="1.5"
+                        />
+                        <text
+                          x={item.cx}
+                          y={item.cy - 4}
+                          fill="#ffffff"
+                          fontSize="9"
+                          fontWeight="bold"
+                          textAnchor="middle"
+                          className="pointer-events-none drop-shadow"
+                        >
+                          {item.name}
+                        </text>
+                        {popText && (
+                          <text
+                            x={item.cx}
+                            y={item.cy + 8}
+                            fill="#facc15"
+                            fontSize="8"
+                            textAnchor="middle"
+                            className="pointer-events-none drop-shadow"
+                          >
+                            {popText}
+                          </text>
+                        )}
+                      </g>
+                    );
+                  })}
+                </g>
+              </svg>
             </div>
-            <p className="mt-6 text-center text-xs text-muted-foreground/70">
-              *Peta interaktif (klik area kecamatan untuk detail) sedang dalam tahap pengembangan.
+            <p className="mt-4 text-center text-xs text-muted-foreground/70">
+              *Klik langsung pada area kecamatan di peta untuk mengelola status &amp; data wilayah.
             </p>
           </CardContent>
         </Card>
