@@ -19,7 +19,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Skeleton } from "@/components/ui/skeleton";
 import { Sheet, SheetContent } from "@/components/ui/sheet";
 import {
   Select,
@@ -85,7 +84,7 @@ const agenTersedia = ["Aisyah", "Fahmi", "Umi Kholifah", "Syaiful Anam"];
 
 function TeritorialPage() {
   const queryClient = useQueryClient();
-  const { data, isLoading, isError } = useQuery(teritoriQueryOptions);
+  const { data } = useQuery(teritoriQueryOptions);
   const [kota, setKota] = useState("GRESIK");
   const [idDipilih, setIdDipilih] = useState<string | null>(null);
   const [panasPopulasi, setPanasPopulasi] = useState(true);
@@ -102,7 +101,6 @@ function TeritorialPage() {
   );
   const dipilih = semua.find((t) => t.id === idDipilih) ?? null;
   const totalPopulasi = wilayah.reduce((a, t) => a + t.populasi, 0);
-  const maxPopulasi = Math.max(1, ...wilayah.map((t) => t.populasi));
 
   const mutasiStatus = useMutation({
     mutationFn: ({ id, status }: { id: string; status: StatusTeritori }) =>
@@ -227,47 +225,17 @@ function TeritorialPage() {
               Sumber: BPS 2023
             </p>
           </CardHeader>
-          <CardContent>
-            {isLoading ? (
-              <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
-                {Array.from({ length: 12 }).map((_, i) => (
-                  <Skeleton key={i} className="h-24 rounded-xl" />
-                ))}
-              </div>
-            ) : isError ? (
-              <p className="py-10 text-center text-sm text-destructive">
-                Gagal memuat data wilayah dari database.
-              </p>
-            ) : (
-              <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
-                {wilayah.map((t) => {
-                  const intensitas = panasPopulasi
-                    ? 0.7 + (t.populasi / maxPopulasi) * 0.3
-                    : 1;
-                  return (
-                    <button
-                      key={t.id}
-                      onClick={() => setIdDipilih(t.id)}
-                      style={{ opacity: intensitas }}
-                      className={`rounded-xl border p-4 text-left transition-transform hover:scale-[1.03] focus:outline-none focus-visible:ring-2 focus-visible:ring-ring ${warnaStatus[t.status].blok} ${idDipilih === t.id ? "ring-2 ring-primary" : ""}`}
-                    >
-                      <p className="text-sm leading-tight font-bold break-words">{t.kecamatan}</p>
-                      <p className="text-[11px] font-semibold opacity-80">
-                        {t.populasi.toLocaleString("id-ID")}
-                      </p>
-                      <p className="mt-2 truncate text-[11px] opacity-90">
-                        {t.pemilik ? `Agen: ${t.pemilik}` : "Belum ada pemilik"}
-                      </p>
-                      {panasMenengah && (
-                        <p className="mt-1 truncate text-[11px] font-semibold opacity-90">
-                          Potensi: {t.potensi_pasar.toLocaleString("id-ID")}
-                        </p>
-                      )}
-                    </button>
-                  );
-                })}
-              </div>
-            )}
+          <CardContent className="flex flex-col items-center">
+            <div className="relative flex w-full justify-center rounded-xl bg-background/50 p-2 shadow-inner sm:p-4">
+              <img
+                src="/map-gresik-dummy.png"
+                alt={`Peta Wilayah ${kota}`}
+                className="h-auto w-full max-w-2xl rounded-lg object-contain drop-shadow-xl"
+              />
+            </div>
+            <p className="mt-6 text-center text-xs text-muted-foreground/70">
+              *Peta interaktif (klik area kecamatan untuk detail) sedang dalam tahap pengembangan.
+            </p>
           </CardContent>
         </Card>
 
