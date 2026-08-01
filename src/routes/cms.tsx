@@ -35,6 +35,8 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
 import { PageHeader } from "@/components/layout/page-header";
+import { PanelAkademi } from "@/components/cms/panel-akademi";
+
 import { agent } from "@/lib/data";
 import {
   hapusJamaah,
