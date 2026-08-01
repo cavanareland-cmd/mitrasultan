@@ -2,6 +2,7 @@ import { Link, useRouterState } from "@tanstack/react-router";
 import {
   LayoutDashboard,
   Users,
+  DatabaseZap,
   Filter,
   Map,
   GraduationCap,
@@ -30,6 +31,7 @@ import { agent } from "@/lib/data";
 /** Menu utama dashboard mitra. */
 const menuUtama = [
   { judul: "Dashboard", url: "/", icon: LayoutDashboard },
+  { judul: "CMS Mitra", url: "/cms", icon: DatabaseZap },
   { judul: "Manajemen Jamaah", url: "/jamaah", icon: Users },
   { judul: "Segmentasi Jamaah", url: "/segmentasi", icon: Filter },
   { judul: "Peta Teritorial", url: "/teritorial", icon: Map },

@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AkademiRouteImport } from './routes/akademi'
 import { Route as AlatRouteImport } from './routes/alat'
+import { Route as CmsRouteImport } from './routes/cms'
 import { Route as DompetRouteImport } from './routes/dompet'
 import { Route as JamaahRouteImport } from './routes/jamaah'
 import { Route as JaringanRouteImport } from './routes/jaringan'
@@ -33,6 +34,11 @@ const AkademiRoute = AkademiRouteImport.update({
 const AlatRoute = AlatRouteImport.update({
   id: '/alat',
   path: '/alat',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CmsRoute = CmsRouteImport.update({
+  id: '/cms',
+  path: '/cms',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DompetRoute = DompetRouteImport.update({
@@ -75,6 +81,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/akademi': typeof AkademiRoute
   '/alat': typeof AlatRoute
+  '/cms': typeof CmsRoute
   '/dompet': typeof DompetRoute
   '/jamaah': typeof JamaahRoute
   '/jaringan': typeof JaringanRoute
@@ -87,6 +94,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/akademi': typeof AkademiRoute
   '/alat': typeof AlatRoute
+  '/cms': typeof CmsRoute
   '/dompet': typeof DompetRoute
   '/jamaah': typeof JamaahRoute
   '/jaringan': typeof JaringanRoute
@@ -100,6 +108,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/akademi': typeof AkademiRoute
   '/alat': typeof AlatRoute
+  '/cms': typeof CmsRoute
   '/dompet': typeof DompetRoute
   '/jamaah': typeof JamaahRoute
   '/jaringan': typeof JaringanRoute
@@ -114,6 +123,7 @@ export interface FileRouteTypes {
     | '/'
     | '/akademi'
     | '/alat'
+    | '/cms'
     | '/dompet'
     | '/jamaah'
     | '/jaringan'
@@ -126,6 +136,7 @@ export interface FileRouteTypes {
     | '/'
     | '/akademi'
     | '/alat'
+    | '/cms'
     | '/dompet'
     | '/jamaah'
     | '/jaringan'
@@ -138,6 +149,7 @@ export interface FileRouteTypes {
     | '/'
     | '/akademi'
     | '/alat'
+    | '/cms'
     | '/dompet'
     | '/jamaah'
     | '/jaringan'
@@ -151,6 +163,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AkademiRoute: typeof AkademiRoute
   AlatRoute: typeof AlatRoute
+  CmsRoute: typeof CmsRoute
   DompetRoute: typeof DompetRoute
   JamaahRoute: typeof JamaahRoute
   JaringanRoute: typeof JaringanRoute
@@ -181,6 +194,13 @@ declare module '@tanstack/react-router' {
       path: '/alat'
       fullPath: '/alat'
       preLoaderRoute: typeof AlatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cms': {
+      id: '/cms'
+      path: '/cms'
+      fullPath: '/cms'
+      preLoaderRoute: typeof CmsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/dompet': {
@@ -239,6 +259,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AkademiRoute: AkademiRoute,
   AlatRoute: AlatRoute,
+  CmsRoute: CmsRoute,
   DompetRoute: DompetRoute,
   JamaahRoute: JamaahRoute,
   JaringanRoute: JaringanRoute,
