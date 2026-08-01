@@ -35,6 +35,8 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
 import { PageHeader } from "@/components/layout/page-header";
+import { PanelAkademi } from "@/components/cms/panel-akademi";
+
 import { agent } from "@/lib/data";
 import {
   hapusJamaah,
@@ -109,6 +111,7 @@ function CmsPage() {
         <TabsList>
           <TabsTrigger value="jamaah">Data Jamaah</TabsTrigger>
           <TabsTrigger value="teritori">Data Teritori</TabsTrigger>
+          <TabsTrigger value="akademi">Data Akademi</TabsTrigger>
         </TabsList>
         <TabsContent value="jamaah">
           <PanelJamaah />
@@ -116,7 +119,11 @@ function CmsPage() {
         <TabsContent value="teritori">
           <PanelTeritori />
         </TabsContent>
+        <TabsContent value="akademi">
+          <PanelAkademi />
+        </TabsContent>
       </Tabs>
+
     </div>
   );
 }

@@ -82,7 +82,7 @@ export async function hapusJamaah(id: string) {
  * Berlangganan perubahan realtime pada satu tabel, lalu menyegarkan cache query
  * agar dashboard semua mitra ikut ter-update tanpa refresh.
  */
-export function useRealtimeTable(tabel: "jamaah" | "teritori", queryKey: string[]) {
+export function useRealtimeTable(tabel: string, queryKey: string[]) {
   const queryClient = useQueryClient();
 
   useEffect(() => {

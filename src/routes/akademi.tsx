@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { Award, CalendarDays, Lock, PlayCircle, Video } from "lucide-react";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -8,7 +9,12 @@ import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { PageHeader } from "@/components/layout/page-header";
-import { jadwalTraining, materiAkademi, sertifikasi } from "@/lib/data";
+import { useRealtimeTable } from "@/lib/jamaah";
+import {
+  jadwalQueryOptions,
+  materiQueryOptions,
+  sertifikasiQueryOptions,
+} from "@/lib/akademi";
 
 export const Route = createFileRoute("/akademi")({
   head: () => ({
@@ -33,9 +39,18 @@ const kategori = ["Semua", "Product Knowledge", "Skill Marketing", "Fikih Umrah"
 
 function AkademiPage() {
   const [tab, setTab] = useState<(typeof kategori)[number]>("Semua");
-  const rataProgres = Math.round(
-    materiAkademi.reduce((a, m) => a + m.progres, 0) / materiAkademi.length,
-  );
+
+  useRealtimeTable("akademi_materi", ["akademi_materi"]);
+  useRealtimeTable("akademi_sertifikasi", ["akademi_sertifikasi"]);
+  useRealtimeTable("akademi_jadwal", ["akademi_jadwal"]);
+
+  const { data: materiAkademi = [] } = useQuery(materiQueryOptions);
+  const { data: sertifikasi = [] } = useQuery(sertifikasiQueryOptions);
+  const { data: jadwalTraining = [] } = useQuery(jadwalQueryOptions);
+
+  const rataProgres = materiAkademi.length
+    ? Math.round(materiAkademi.reduce((a, m) => a + m.progres, 0) / materiAkademi.length)
+    : 0;
 
   return (
     <div className="mx-auto max-w-7xl space-y-6">
@@ -107,7 +122,7 @@ function AkademiPage() {
             </CardHeader>
             <CardContent className="space-y-4">
               {sertifikasi.map((s) => (
-                <div key={s.nama}>
+                <div key={s.id}>
                   <div className="flex items-center justify-between gap-2">
                     <p className="truncate text-sm font-medium">{s.nama}</p>
                     {s.status === "Terkunci" ? (
