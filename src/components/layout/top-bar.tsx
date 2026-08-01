@@ -5,28 +5,14 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { agent } from "@/lib/data";
-import logoAsset from "@/assets/sultan-haramain-logo.png.asset.json";
 
-/** Bar atas: logo, notifikasi, profil agen, dan ikon mahkota tier leaderboard. */
+/** Bar atas: tombol sidebar, notifikasi, profil agen, dan ikon mahkota tier leaderboard. */
 export function TopBar() {
   return (
     <header className="sticky top-0 z-30 border-b border-border/70 bg-background/85 backdrop-blur-md">
-      <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3 px-3 py-3 sm:px-6">
-        <div className="flex min-w-0 items-center gap-3">
+      <div className="flex items-center justify-between px-3 py-3 sm:px-6">
+        <div className="flex items-center gap-3">
           <SidebarTrigger className="shrink-0" />
-          <div className="hidden size-10 shrink-0 place-items-center rounded-xl border border-primary/30 bg-secondary/60 p-1 sm:grid">
-            <img
-              src={logoAsset.url}
-              alt="Logo Mitra Center Sultan Haramain"
-              className="size-full object-contain"
-            />
-          </div>
-          <div className="min-w-0">
-            <h1 className="truncate font-display text-lg leading-tight font-semibold sm:text-xl">
-              Mitra Center Sultan Haramain
-            </h1>
-            <p className="truncate text-[11px] text-muted-foreground">Gresik • Portal Kemitraan</p>
-          </div>
         </div>
 
         <div className="flex shrink-0 items-center gap-2">
