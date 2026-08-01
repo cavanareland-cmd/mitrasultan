@@ -229,7 +229,7 @@ function TeritorialPage() {
           </CardHeader>
           <CardContent>
             {isLoading ? (
-              <div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-4">
+              <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
                 {Array.from({ length: 12 }).map((_, i) => (
                   <Skeleton key={i} className="h-24 rounded-xl" />
                 ))}
@@ -239,10 +239,10 @@ function TeritorialPage() {
                 Gagal memuat data wilayah dari database.
               </p>
             ) : (
-              <div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-4">
+              <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
                 {wilayah.map((t) => {
                   const intensitas = panasPopulasi
-                    ? 0.45 + (t.populasi / maxPopulasi) * 0.55
+                    ? 0.7 + (t.populasi / maxPopulasi) * 0.3
                     : 1;
                   return (
                     <button
@@ -251,7 +251,7 @@ function TeritorialPage() {
                       style={{ opacity: intensitas }}
                       className={`rounded-xl border p-4 text-left transition-transform hover:scale-[1.03] focus:outline-none focus-visible:ring-2 focus-visible:ring-ring ${warnaStatus[t.status].blok} ${idDipilih === t.id ? "ring-2 ring-primary" : ""}`}
                     >
-                      <p className="truncate text-sm font-bold">{t.kecamatan}</p>
+                      <p className="text-sm leading-tight font-bold break-words">{t.kecamatan}</p>
                       <p className="text-[11px] font-semibold opacity-80">
                         {t.populasi.toLocaleString("id-ID")}
                       </p>
