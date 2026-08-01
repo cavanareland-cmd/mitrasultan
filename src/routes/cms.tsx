@@ -109,6 +109,7 @@ function CmsPage() {
         <TabsList>
           <TabsTrigger value="jamaah">Data Jamaah</TabsTrigger>
           <TabsTrigger value="teritori">Data Teritori</TabsTrigger>
+          <TabsTrigger value="akademi">Data Akademi</TabsTrigger>
         </TabsList>
         <TabsContent value="jamaah">
           <PanelJamaah />
@@ -116,7 +117,11 @@ function CmsPage() {
         <TabsContent value="teritori">
           <PanelTeritori />
         </TabsContent>
+        <TabsContent value="akademi">
+          <PanelAkademi />
+        </TabsContent>
       </Tabs>
+
     </div>
   );
 }
