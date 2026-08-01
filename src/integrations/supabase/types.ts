@@ -14,6 +14,51 @@ export type Database = {
   }
   public: {
     Tables: {
+      jamaah: {
+        Row: {
+          catatan: string
+          created_at: string
+          id: string
+          kota: string
+          mitra: string
+          nama: string
+          nilai: number
+          paket: string
+          status: Database["public"]["Enums"]["status_jamaah"]
+          sumber: string
+          telepon: string
+          updated_at: string
+        }
+        Insert: {
+          catatan?: string
+          created_at?: string
+          id?: string
+          kota?: string
+          mitra?: string
+          nama: string
+          nilai?: number
+          paket?: string
+          status?: Database["public"]["Enums"]["status_jamaah"]
+          sumber?: string
+          telepon?: string
+          updated_at?: string
+        }
+        Update: {
+          catatan?: string
+          created_at?: string
+          id?: string
+          kota?: string
+          mitra?: string
+          nama?: string
+          nilai?: number
+          paket?: string
+          status?: Database["public"]["Enums"]["status_jamaah"]
+          sumber?: string
+          telepon?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       teritori: {
         Row: {
           catatan: string
@@ -73,6 +118,14 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
+      status_jamaah:
+        | "Prospek"
+        | "Tanya-tanya"
+        | "DP"
+        | "Pemberkasan"
+        | "Lunas"
+        | "Berangkat"
+        | "Batal"
       status_teritori:
         | "Aktif"
         | "Tersedia"
@@ -206,6 +259,15 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
+      status_jamaah: [
+        "Prospek",
+        "Tanya-tanya",
+        "DP",
+        "Pemberkasan",
+        "Lunas",
+        "Berangkat",
+        "Batal",
+      ],
       status_teritori: [
         "Aktif",
         "Tersedia",
