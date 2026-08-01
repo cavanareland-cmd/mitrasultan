@@ -14,7 +14,57 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      teritori: {
+        Row: {
+          catatan: string
+          created_at: string
+          dihubungi: number
+          id: string
+          kabupaten: string
+          kecamatan: string
+          leads_aktif: number
+          lost: number
+          pemilik: string | null
+          pending: number
+          populasi: number
+          potensi_pasar: number
+          status: Database["public"]["Enums"]["status_teritori"]
+          updated_at: string
+        }
+        Insert: {
+          catatan?: string
+          created_at?: string
+          dihubungi?: number
+          id?: string
+          kabupaten: string
+          kecamatan: string
+          leads_aktif?: number
+          lost?: number
+          pemilik?: string | null
+          pending?: number
+          populasi?: number
+          potensi_pasar?: number
+          status?: Database["public"]["Enums"]["status_teritori"]
+          updated_at?: string
+        }
+        Update: {
+          catatan?: string
+          created_at?: string
+          dihubungi?: number
+          id?: string
+          kabupaten?: string
+          kecamatan?: string
+          leads_aktif?: number
+          lost?: number
+          pemilik?: string | null
+          pending?: number
+          populasi?: number
+          potensi_pasar?: number
+          status?: Database["public"]["Enums"]["status_teritori"]
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -23,7 +73,12 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      status_teritori:
+        | "Aktif"
+        | "Tersedia"
+        | "Perencanaan"
+        | "Retargeting"
+        | "Blacklist"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +205,14 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      status_teritori: [
+        "Aktif",
+        "Tersedia",
+        "Perencanaan",
+        "Retargeting",
+        "Blacklist",
+      ],
+    },
   },
 } as const
