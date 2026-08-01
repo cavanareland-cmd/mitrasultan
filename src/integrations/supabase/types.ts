@@ -14,6 +14,105 @@ export type Database = {
   }
   public: {
     Tables: {
+      akademi_jadwal: {
+        Row: {
+          created_at: string
+          id: string
+          judul: string
+          pemateri: string
+          tanggal: string
+          tipe: string
+          updated_at: string
+          urutan: number
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          judul: string
+          pemateri?: string
+          tanggal?: string
+          tipe?: string
+          updated_at?: string
+          urutan?: number
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          judul?: string
+          pemateri?: string
+          tanggal?: string
+          tipe?: string
+          updated_at?: string
+          urutan?: number
+        }
+        Relationships: []
+      }
+      akademi_materi: {
+        Row: {
+          created_at: string
+          durasi: string
+          id: string
+          judul: string
+          kategori: Database["public"]["Enums"]["kategori_materi"]
+          pemateri: string
+          progres: number
+          updated_at: string
+          urutan: number
+        }
+        Insert: {
+          created_at?: string
+          durasi?: string
+          id?: string
+          judul: string
+          kategori?: Database["public"]["Enums"]["kategori_materi"]
+          pemateri?: string
+          progres?: number
+          updated_at?: string
+          urutan?: number
+        }
+        Update: {
+          created_at?: string
+          durasi?: string
+          id?: string
+          judul?: string
+          kategori?: Database["public"]["Enums"]["kategori_materi"]
+          pemateri?: string
+          progres?: number
+          updated_at?: string
+          urutan?: number
+        }
+        Relationships: []
+      }
+      akademi_sertifikasi: {
+        Row: {
+          created_at: string
+          id: string
+          nama: string
+          progres: number
+          status: Database["public"]["Enums"]["status_sertifikasi"]
+          updated_at: string
+          urutan: number
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          nama: string
+          progres?: number
+          status?: Database["public"]["Enums"]["status_sertifikasi"]
+          updated_at?: string
+          urutan?: number
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          nama?: string
+          progres?: number
+          status?: Database["public"]["Enums"]["status_sertifikasi"]
+          updated_at?: string
+          urutan?: number
+        }
+        Relationships: []
+      }
       jamaah: {
         Row: {
           catatan: string
@@ -118,6 +217,7 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
+      kategori_materi: "Product Knowledge" | "Skill Marketing" | "Fikih Umrah"
       status_jamaah:
         | "Prospek"
         | "Tanya-tanya"
@@ -126,6 +226,7 @@ export type Database = {
         | "Lunas"
         | "Berangkat"
         | "Batal"
+      status_sertifikasi: "Selesai" | "Berjalan" | "Terkunci"
       status_teritori:
         | "Aktif"
         | "Tersedia"
@@ -259,6 +360,7 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
+      kategori_materi: ["Product Knowledge", "Skill Marketing", "Fikih Umrah"],
       status_jamaah: [
         "Prospek",
         "Tanya-tanya",
@@ -268,6 +370,7 @@ export const Constants = {
         "Berangkat",
         "Batal",
       ],
+      status_sertifikasi: ["Selesai", "Berjalan", "Terkunci"],
       status_teritori: [
         "Aktif",
         "Tersedia",
