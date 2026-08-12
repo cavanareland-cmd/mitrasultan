@@ -9,118 +9,135 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as IndexRouteImport } from './routes/index'
-import { Route as AkademiRouteImport } from './routes/akademi'
-import { Route as AlatRouteImport } from './routes/alat'
-import { Route as CmsRouteImport } from './routes/cms'
-import { Route as DompetRouteImport } from './routes/dompet'
-import { Route as JamaahRouteImport } from './routes/jamaah'
-import { Route as JaringanRouteImport } from './routes/jaringan'
-import { Route as LeaderboardRouteImport } from './routes/leaderboard'
-import { Route as MuslimRouteImport } from './routes/muslim'
-import { Route as SegmentasiRouteImport } from './routes/segmentasi'
-import { Route as TeritorialRouteImport } from './routes/teritorial'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as AuthenticatedIndexRouteImport } from './routes/_authenticated/index'
+import { Route as AuthenticatedAkademiRouteImport } from './routes/_authenticated/akademi'
+import { Route as AuthenticatedAlatRouteImport } from './routes/_authenticated/alat'
+import { Route as AuthenticatedCmsRouteImport } from './routes/_authenticated/cms'
+import { Route as AuthenticatedDompetRouteImport } from './routes/_authenticated/dompet'
+import { Route as AuthenticatedJamaahRouteImport } from './routes/_authenticated/jamaah'
+import { Route as AuthenticatedJaringanRouteImport } from './routes/_authenticated/jaringan'
+import { Route as AuthenticatedLeaderboardRouteImport } from './routes/_authenticated/leaderboard'
+import { Route as AuthenticatedMuslimRouteImport } from './routes/_authenticated/muslim'
+import { Route as AuthenticatedSegmentasiRouteImport } from './routes/_authenticated/segmentasi'
+import { Route as AuthenticatedTeritorialRouteImport } from './routes/_authenticated/teritorial'
 
-const IndexRoute = IndexRouteImport.update({
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedIndexRoute = AuthenticatedIndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
-const AkademiRoute = AkademiRouteImport.update({
+const AuthenticatedAkademiRoute = AuthenticatedAkademiRouteImport.update({
   id: '/akademi',
   path: '/akademi',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
-const AlatRoute = AlatRouteImport.update({
+const AuthenticatedAlatRoute = AuthenticatedAlatRouteImport.update({
   id: '/alat',
   path: '/alat',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
-const CmsRoute = CmsRouteImport.update({
+const AuthenticatedCmsRoute = AuthenticatedCmsRouteImport.update({
   id: '/cms',
   path: '/cms',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
-const DompetRoute = DompetRouteImport.update({
+const AuthenticatedDompetRoute = AuthenticatedDompetRouteImport.update({
   id: '/dompet',
   path: '/dompet',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
-const JamaahRoute = JamaahRouteImport.update({
+const AuthenticatedJamaahRoute = AuthenticatedJamaahRouteImport.update({
   id: '/jamaah',
   path: '/jamaah',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
-const JaringanRoute = JaringanRouteImport.update({
+const AuthenticatedJaringanRoute = AuthenticatedJaringanRouteImport.update({
   id: '/jaringan',
   path: '/jaringan',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
-const LeaderboardRoute = LeaderboardRouteImport.update({
-  id: '/leaderboard',
-  path: '/leaderboard',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const MuslimRoute = MuslimRouteImport.update({
+const AuthenticatedLeaderboardRoute =
+  AuthenticatedLeaderboardRouteImport.update({
+    id: '/leaderboard',
+    path: '/leaderboard',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedMuslimRoute = AuthenticatedMuslimRouteImport.update({
   id: '/muslim',
   path: '/muslim',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
-const SegmentasiRoute = SegmentasiRouteImport.update({
+const AuthenticatedSegmentasiRoute = AuthenticatedSegmentasiRouteImport.update({
   id: '/segmentasi',
   path: '/segmentasi',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
-const TeritorialRoute = TeritorialRouteImport.update({
+const AuthenticatedTeritorialRoute = AuthenticatedTeritorialRouteImport.update({
   id: '/teritorial',
   path: '/teritorial',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '/akademi': typeof AkademiRoute
-  '/alat': typeof AlatRoute
-  '/cms': typeof CmsRoute
-  '/dompet': typeof DompetRoute
-  '/jamaah': typeof JamaahRoute
-  '/jaringan': typeof JaringanRoute
-  '/leaderboard': typeof LeaderboardRoute
-  '/muslim': typeof MuslimRoute
-  '/segmentasi': typeof SegmentasiRoute
-  '/teritorial': typeof TeritorialRoute
+  '/': typeof AuthenticatedIndexRoute
+  '/auth': typeof AuthRoute
+  '/akademi': typeof AuthenticatedAkademiRoute
+  '/alat': typeof AuthenticatedAlatRoute
+  '/cms': typeof AuthenticatedCmsRoute
+  '/dompet': typeof AuthenticatedDompetRoute
+  '/jamaah': typeof AuthenticatedJamaahRoute
+  '/jaringan': typeof AuthenticatedJaringanRoute
+  '/leaderboard': typeof AuthenticatedLeaderboardRoute
+  '/muslim': typeof AuthenticatedMuslimRoute
+  '/segmentasi': typeof AuthenticatedSegmentasiRoute
+  '/teritorial': typeof AuthenticatedTeritorialRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '/akademi': typeof AkademiRoute
-  '/alat': typeof AlatRoute
-  '/cms': typeof CmsRoute
-  '/dompet': typeof DompetRoute
-  '/jamaah': typeof JamaahRoute
-  '/jaringan': typeof JaringanRoute
-  '/leaderboard': typeof LeaderboardRoute
-  '/muslim': typeof MuslimRoute
-  '/segmentasi': typeof SegmentasiRoute
-  '/teritorial': typeof TeritorialRoute
+  '/auth': typeof AuthRoute
+  '/akademi': typeof AuthenticatedAkademiRoute
+  '/alat': typeof AuthenticatedAlatRoute
+  '/cms': typeof AuthenticatedCmsRoute
+  '/dompet': typeof AuthenticatedDompetRoute
+  '/jamaah': typeof AuthenticatedJamaahRoute
+  '/jaringan': typeof AuthenticatedJaringanRoute
+  '/leaderboard': typeof AuthenticatedLeaderboardRoute
+  '/muslim': typeof AuthenticatedMuslimRoute
+  '/segmentasi': typeof AuthenticatedSegmentasiRoute
+  '/teritorial': typeof AuthenticatedTeritorialRoute
+  '/': typeof AuthenticatedIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
-  '/akademi': typeof AkademiRoute
-  '/alat': typeof AlatRoute
-  '/cms': typeof CmsRoute
-  '/dompet': typeof DompetRoute
-  '/jamaah': typeof JamaahRoute
-  '/jaringan': typeof JaringanRoute
-  '/leaderboard': typeof LeaderboardRoute
-  '/muslim': typeof MuslimRoute
-  '/segmentasi': typeof SegmentasiRoute
-  '/teritorial': typeof TeritorialRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/auth': typeof AuthRoute
+  '/_authenticated/akademi': typeof AuthenticatedAkademiRoute
+  '/_authenticated/alat': typeof AuthenticatedAlatRoute
+  '/_authenticated/cms': typeof AuthenticatedCmsRoute
+  '/_authenticated/dompet': typeof AuthenticatedDompetRoute
+  '/_authenticated/jamaah': typeof AuthenticatedJamaahRoute
+  '/_authenticated/jaringan': typeof AuthenticatedJaringanRoute
+  '/_authenticated/leaderboard': typeof AuthenticatedLeaderboardRoute
+  '/_authenticated/muslim': typeof AuthenticatedMuslimRoute
+  '/_authenticated/segmentasi': typeof AuthenticatedSegmentasiRoute
+  '/_authenticated/teritorial': typeof AuthenticatedTeritorialRoute
+  '/_authenticated/': typeof AuthenticatedIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/auth'
     | '/akademi'
     | '/alat'
     | '/cms'
@@ -133,7 +150,7 @@ export interface FileRouteTypes {
     | '/teritorial'
   fileRoutesByTo: FileRoutesByTo
   to:
-    | '/'
+    | '/auth'
     | '/akademi'
     | '/alat'
     | '/cms'
@@ -144,140 +161,160 @@ export interface FileRouteTypes {
     | '/muslim'
     | '/segmentasi'
     | '/teritorial'
+    | '/'
   id:
     | '__root__'
-    | '/'
-    | '/akademi'
-    | '/alat'
-    | '/cms'
-    | '/dompet'
-    | '/jamaah'
-    | '/jaringan'
-    | '/leaderboard'
-    | '/muslim'
-    | '/segmentasi'
-    | '/teritorial'
+    | '/_authenticated'
+    | '/auth'
+    | '/_authenticated/akademi'
+    | '/_authenticated/alat'
+    | '/_authenticated/cms'
+    | '/_authenticated/dompet'
+    | '/_authenticated/jamaah'
+    | '/_authenticated/jaringan'
+    | '/_authenticated/leaderboard'
+    | '/_authenticated/muslim'
+    | '/_authenticated/segmentasi'
+    | '/_authenticated/teritorial'
+    | '/_authenticated/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
-  AkademiRoute: typeof AkademiRoute
-  AlatRoute: typeof AlatRoute
-  CmsRoute: typeof CmsRoute
-  DompetRoute: typeof DompetRoute
-  JamaahRoute: typeof JamaahRoute
-  JaringanRoute: typeof JaringanRoute
-  LeaderboardRoute: typeof LeaderboardRoute
-  MuslimRoute: typeof MuslimRoute
-  SegmentasiRoute: typeof SegmentasiRoute
-  TeritorialRoute: typeof TeritorialRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  AuthRoute: typeof AuthRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/': {
+      id: '/_authenticated/'
       path: '/'
       fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AuthenticatedIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/akademi': {
-      id: '/akademi'
+    '/_authenticated/akademi': {
+      id: '/_authenticated/akademi'
       path: '/akademi'
       fullPath: '/akademi'
-      preLoaderRoute: typeof AkademiRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AuthenticatedAkademiRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/alat': {
-      id: '/alat'
+    '/_authenticated/alat': {
+      id: '/_authenticated/alat'
       path: '/alat'
       fullPath: '/alat'
-      preLoaderRoute: typeof AlatRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AuthenticatedAlatRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/cms': {
-      id: '/cms'
+    '/_authenticated/cms': {
+      id: '/_authenticated/cms'
       path: '/cms'
       fullPath: '/cms'
-      preLoaderRoute: typeof CmsRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AuthenticatedCmsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/dompet': {
-      id: '/dompet'
+    '/_authenticated/dompet': {
+      id: '/_authenticated/dompet'
       path: '/dompet'
       fullPath: '/dompet'
-      preLoaderRoute: typeof DompetRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AuthenticatedDompetRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/jamaah': {
-      id: '/jamaah'
+    '/_authenticated/jamaah': {
+      id: '/_authenticated/jamaah'
       path: '/jamaah'
       fullPath: '/jamaah'
-      preLoaderRoute: typeof JamaahRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AuthenticatedJamaahRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/jaringan': {
-      id: '/jaringan'
+    '/_authenticated/jaringan': {
+      id: '/_authenticated/jaringan'
       path: '/jaringan'
       fullPath: '/jaringan'
-      preLoaderRoute: typeof JaringanRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AuthenticatedJaringanRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/leaderboard': {
-      id: '/leaderboard'
+    '/_authenticated/leaderboard': {
+      id: '/_authenticated/leaderboard'
       path: '/leaderboard'
       fullPath: '/leaderboard'
-      preLoaderRoute: typeof LeaderboardRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AuthenticatedLeaderboardRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/muslim': {
-      id: '/muslim'
+    '/_authenticated/muslim': {
+      id: '/_authenticated/muslim'
       path: '/muslim'
       fullPath: '/muslim'
-      preLoaderRoute: typeof MuslimRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AuthenticatedMuslimRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/segmentasi': {
-      id: '/segmentasi'
+    '/_authenticated/segmentasi': {
+      id: '/_authenticated/segmentasi'
       path: '/segmentasi'
       fullPath: '/segmentasi'
-      preLoaderRoute: typeof SegmentasiRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AuthenticatedSegmentasiRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/teritorial': {
-      id: '/teritorial'
+    '/_authenticated/teritorial': {
+      id: '/_authenticated/teritorial'
       path: '/teritorial'
       fullPath: '/teritorial'
-      preLoaderRoute: typeof TeritorialRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AuthenticatedTeritorialRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
   }
 }
 
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAkademiRoute: typeof AuthenticatedAkademiRoute
+  AuthenticatedAlatRoute: typeof AuthenticatedAlatRoute
+  AuthenticatedCmsRoute: typeof AuthenticatedCmsRoute
+  AuthenticatedDompetRoute: typeof AuthenticatedDompetRoute
+  AuthenticatedJamaahRoute: typeof AuthenticatedJamaahRoute
+  AuthenticatedJaringanRoute: typeof AuthenticatedJaringanRoute
+  AuthenticatedLeaderboardRoute: typeof AuthenticatedLeaderboardRoute
+  AuthenticatedMuslimRoute: typeof AuthenticatedMuslimRoute
+  AuthenticatedSegmentasiRoute: typeof AuthenticatedSegmentasiRoute
+  AuthenticatedTeritorialRoute: typeof AuthenticatedTeritorialRoute
+  AuthenticatedIndexRoute: typeof AuthenticatedIndexRoute
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAkademiRoute: AuthenticatedAkademiRoute,
+  AuthenticatedAlatRoute: AuthenticatedAlatRoute,
+  AuthenticatedCmsRoute: AuthenticatedCmsRoute,
+  AuthenticatedDompetRoute: AuthenticatedDompetRoute,
+  AuthenticatedJamaahRoute: AuthenticatedJamaahRoute,
+  AuthenticatedJaringanRoute: AuthenticatedJaringanRoute,
+  AuthenticatedLeaderboardRoute: AuthenticatedLeaderboardRoute,
+  AuthenticatedMuslimRoute: AuthenticatedMuslimRoute,
+  AuthenticatedSegmentasiRoute: AuthenticatedSegmentasiRoute,
+  AuthenticatedTeritorialRoute: AuthenticatedTeritorialRoute,
+  AuthenticatedIndexRoute: AuthenticatedIndexRoute,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
-  AkademiRoute: AkademiRoute,
-  AlatRoute: AlatRoute,
-  CmsRoute: CmsRoute,
-  DompetRoute: DompetRoute,
-  JamaahRoute: JamaahRoute,
-  JaringanRoute: JaringanRoute,
-  LeaderboardRoute: LeaderboardRoute,
-  MuslimRoute: MuslimRoute,
-  SegmentasiRoute: SegmentasiRoute,
-  TeritorialRoute: TeritorialRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  AuthRoute: AuthRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

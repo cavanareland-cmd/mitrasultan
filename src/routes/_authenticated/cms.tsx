@@ -59,7 +59,7 @@ import {
   type StatusTeritori,
 } from "@/lib/teritori";
 
-export const Route = createFileRoute("/cms")({
+export const Route = createFileRoute("/_authenticated/cms")({
   head: () => ({
     meta: [
       { title: "CMS Mitra — Input & Update Data Realtime Sultan Haramain" },

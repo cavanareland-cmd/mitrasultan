@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 import { PageHeader } from "@/components/layout/page-header";
 import { leaderboard, type Peringkat } from "@/lib/data";
 
-export const Route = createFileRoute("/leaderboard")({
+export const Route = createFileRoute("/_authenticated/leaderboard")({
   head: () => ({
     meta: [
       { title: "Leaderboard Mitra — Papan Peringkat Agen Umrah" },

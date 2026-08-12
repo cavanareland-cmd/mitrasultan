@@ -17,7 +17,7 @@ import { Progress } from "@/components/ui/progress";
 import { PageHeader } from "@/components/layout/page-header";
 import { agent, agendaHariIni, formatRupiah, ringkasan, umrahGratis } from "@/lib/data";
 
-export const Route = createFileRoute("/")({
+export const Route = createFileRoute("/_authenticated/")({
   head: () => ({
     meta: [
       { title: "Dashboard Mitra — Sultan Haramain Gresik" },

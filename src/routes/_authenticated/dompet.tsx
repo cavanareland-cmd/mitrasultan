@@ -18,7 +18,7 @@ import {
   rincianPendapatan,
 } from "@/lib/data";
 
-export const Route = createFileRoute("/dompet")({
+export const Route = createFileRoute("/_authenticated/dompet")({
   head: () => ({
     meta: [
       { title: "Dompet Mitra & Profil — Komisi Agen Umrah" },

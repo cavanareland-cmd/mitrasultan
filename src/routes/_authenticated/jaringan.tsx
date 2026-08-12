@@ -18,7 +18,7 @@ import {
 import { PageHeader } from "@/components/layout/page-header";
 import { agent, formatRupiah, jaringan, type Downline } from "@/lib/data";
 
-export const Route = createFileRoute("/jaringan")({
+export const Route = createFileRoute("/_authenticated/jaringan")({
   head: () => ({
     meta: [
       { title: "Jaringan Kemitraan — Downline & Referral" },

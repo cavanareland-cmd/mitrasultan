@@ -43,7 +43,7 @@ import {
   type TeritoriRow,
 } from "@/lib/teritori";
 
-export const Route = createFileRoute("/teritorial")({
+export const Route = createFileRoute("/_authenticated/teritorial")({
   head: () => ({
     meta: [
       { title: "Territory Manager — Mitra Sultan Haramain Gresik" },

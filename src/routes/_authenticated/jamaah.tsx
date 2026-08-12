@@ -27,7 +27,7 @@ import {
 import { PageHeader } from "@/components/layout/page-header";
 import { formatRupiah, pipeline, prospek, type Prospek } from "@/lib/data";
 
-export const Route = createFileRoute("/jamaah")({
+export const Route = createFileRoute("/_authenticated/jamaah")({
   head: () => ({
     meta: [
       { title: "Manajemen Jamaah Pintar — Smart CRM Mitra" },

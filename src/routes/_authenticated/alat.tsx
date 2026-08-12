@@ -13,7 +13,7 @@ import { Switch } from "@/components/ui/switch";
 import { PageHeader } from "@/components/layout/page-header";
 import { agent, formatRupiah } from "@/lib/data";
 
-export const Route = createFileRoute("/alat")({
+export const Route = createFileRoute("/_authenticated/alat")({
   head: () => ({
     meta: [
       { title: "Alat & Simulasi Mitra — Kalkulator Umrah & QR Presensi" },
