@@ -10,7 +10,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { supabase } from "@/integrations/supabase/client";
-import logo from "@/assets/sultan-haramain-logo.png";
+import logoAsset from "@/assets/sultan-haramain-logo.png.asset.json";
 
 export const Route = createFileRoute("/auth")({
   head: () => ({
@@ -142,7 +142,7 @@ function HalamanAuth() {
     <div className="grid min-h-screen place-items-center bg-background px-4 py-10">
       <div className="w-full max-w-md space-y-6">
         <div className="text-center">
-          <img src={logo} alt="Logo Sultan Haramain" className="mx-auto h-20 w-auto" />
+          <img src={logoAsset.url} alt="Logo Sultan Haramain" className="mx-auto h-20 w-auto" />
           <h1 className="mt-4 font-display text-2xl font-bold text-gold-gradient">
             Portal Mitra Sultan Haramain
           </h1>
