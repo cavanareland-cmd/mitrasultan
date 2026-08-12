@@ -16,7 +16,7 @@ import {
   sertifikasiQueryOptions,
 } from "@/lib/akademi";
 
-export const Route = createFileRoute("/akademi")({
+export const Route = createFileRoute("/_authenticated/akademi")({
   head: () => ({
     meta: [
       { title: "Akademi Kemitraan — Mini LMS Agen Umrah" },

@@ -25,7 +25,7 @@ import {
 import { PageHeader } from "@/components/layout/page-header";
 import { prospek, type Prospek } from "@/lib/data";
 
-export const Route = createFileRoute("/segmentasi")({
+export const Route = createFileRoute("/_authenticated/segmentasi")({
   head: () => ({
     meta: [
       { title: "Segmentasi Jamaah — Smart Segments Mitra Sultan Haramain" },

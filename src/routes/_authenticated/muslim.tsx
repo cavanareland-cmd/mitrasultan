@@ -16,7 +16,7 @@ import { Badge } from "@/components/ui/badge";
 import { PageHeader } from "@/components/layout/page-header";
 import { infoHijriah, jadwalSholat } from "@/lib/data";
 
-export const Route = createFileRoute("/muslim")({
+export const Route = createFileRoute("/_authenticated/muslim")({
   head: () => ({
     meta: [
       { title: "Alat Muslim Harian — Jadwal Sholat & Utilitas" },
