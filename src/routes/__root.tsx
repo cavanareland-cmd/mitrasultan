@@ -128,22 +128,22 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const router = useRouter();
+
+  useEffect(() => {
+    const { data } = supabase.auth.onAuthStateChange((event) => {
+      if (event !== "SIGNED_IN" && event !== "SIGNED_OUT" && event !== "USER_UPDATED") return;
+      router.invalidate();
+      if (event !== "SIGNED_OUT") queryClient.invalidateQueries();
+    });
+    return () => data.subscription.unsubscribe();
+  }, [router, queryClient]);
 
   return (
     <QueryClientProvider client={queryClient}>
-      <SidebarProvider>
-        <div className="flex min-h-screen w-full bg-background">
-          <AppSidebar />
-          <SidebarInset className="min-w-0 bg-background">
-            <TopBar />
-            <main className="min-w-0 flex-1 px-3 py-5 sm:px-6 sm:py-7">
-              {/* Required: nested routes render here. */}
-              <Outlet />
-            </main>
-          </SidebarInset>
-        </div>
-        <Toaster position="top-center" />
-      </SidebarProvider>
+      {/* Required: nested routes render here. */}
+      <Outlet />
+      <Toaster position="top-center" />
     </QueryClientProvider>
   );
 }
