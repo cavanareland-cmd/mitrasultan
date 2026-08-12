@@ -9,6 +9,8 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AuthenticatedIndexRouteImport } from './routes/_authenticated/index'
 import { Route as AuthenticatedAkademiRouteImport } from './routes/_authenticated/akademi'
 import { Route as AuthenticatedAlatRouteImport } from './routes/_authenticated/alat'
@@ -21,64 +23,75 @@ import { Route as AuthenticatedMuslimRouteImport } from './routes/_authenticated
 import { Route as AuthenticatedSegmentasiRouteImport } from './routes/_authenticated/segmentasi'
 import { Route as AuthenticatedTeritorialRouteImport } from './routes/_authenticated/teritorial'
 
-const AuthenticatedIndexRoute = AuthenticatedIndexRouteImport.update({
-  id: '/_authenticated/',
-  path: '/',
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
   getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedIndexRoute = AuthenticatedIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedAkademiRoute = AuthenticatedAkademiRouteImport.update({
-  id: '/_authenticated/akademi',
+  id: '/akademi',
   path: '/akademi',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedAlatRoute = AuthenticatedAlatRouteImport.update({
-  id: '/_authenticated/alat',
+  id: '/alat',
   path: '/alat',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedCmsRoute = AuthenticatedCmsRouteImport.update({
-  id: '/_authenticated/cms',
+  id: '/cms',
   path: '/cms',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedDompetRoute = AuthenticatedDompetRouteImport.update({
-  id: '/_authenticated/dompet',
+  id: '/dompet',
   path: '/dompet',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedJamaahRoute = AuthenticatedJamaahRouteImport.update({
-  id: '/_authenticated/jamaah',
+  id: '/jamaah',
   path: '/jamaah',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedJaringanRoute = AuthenticatedJaringanRouteImport.update({
-  id: '/_authenticated/jaringan',
+  id: '/jaringan',
   path: '/jaringan',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedLeaderboardRoute =
   AuthenticatedLeaderboardRouteImport.update({
-    id: '/_authenticated/leaderboard',
+    id: '/leaderboard',
     path: '/leaderboard',
-    getParentRoute: () => rootRouteImport,
+    getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 const AuthenticatedMuslimRoute = AuthenticatedMuslimRouteImport.update({
-  id: '/_authenticated/muslim',
+  id: '/muslim',
   path: '/muslim',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedSegmentasiRoute = AuthenticatedSegmentasiRouteImport.update({
-  id: '/_authenticated/segmentasi',
+  id: '/segmentasi',
   path: '/segmentasi',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedTeritorialRoute = AuthenticatedTeritorialRouteImport.update({
-  id: '/_authenticated/teritorial',
+  id: '/teritorial',
   path: '/teritorial',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
+  '/': typeof AuthenticatedIndexRoute
+  '/auth': typeof AuthRoute
   '/akademi': typeof AuthenticatedAkademiRoute
   '/alat': typeof AuthenticatedAlatRoute
   '/cms': typeof AuthenticatedCmsRoute
@@ -89,9 +102,9 @@ export interface FileRoutesByFullPath {
   '/muslim': typeof AuthenticatedMuslimRoute
   '/segmentasi': typeof AuthenticatedSegmentasiRoute
   '/teritorial': typeof AuthenticatedTeritorialRoute
-  '/': typeof AuthenticatedIndexRoute
 }
 export interface FileRoutesByTo {
+  '/auth': typeof AuthRoute
   '/akademi': typeof AuthenticatedAkademiRoute
   '/alat': typeof AuthenticatedAlatRoute
   '/cms': typeof AuthenticatedCmsRoute
@@ -106,6 +119,8 @@ export interface FileRoutesByTo {
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/auth': typeof AuthRoute
   '/_authenticated/akademi': typeof AuthenticatedAkademiRoute
   '/_authenticated/alat': typeof AuthenticatedAlatRoute
   '/_authenticated/cms': typeof AuthenticatedCmsRoute
@@ -121,6 +136,8 @@ export interface FileRoutesById {
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
+    | '/'
+    | '/auth'
     | '/akademi'
     | '/alat'
     | '/cms'
@@ -131,9 +148,9 @@ export interface FileRouteTypes {
     | '/muslim'
     | '/segmentasi'
     | '/teritorial'
-    | '/'
   fileRoutesByTo: FileRoutesByTo
   to:
+    | '/auth'
     | '/akademi'
     | '/alat'
     | '/cms'
@@ -147,6 +164,8 @@ export interface FileRouteTypes {
     | '/'
   id:
     | '__root__'
+    | '/_authenticated'
+    | '/auth'
     | '/_authenticated/akademi'
     | '/_authenticated/alat'
     | '/_authenticated/cms'
@@ -161,6 +180,107 @@ export interface FileRouteTypes {
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  AuthRoute: typeof AuthRoute
+}
+
+declare module '@tanstack/react-router' {
+  interface FileRoutesByPath {
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/': {
+      id: '/_authenticated/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/akademi': {
+      id: '/_authenticated/akademi'
+      path: '/akademi'
+      fullPath: '/akademi'
+      preLoaderRoute: typeof AuthenticatedAkademiRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/alat': {
+      id: '/_authenticated/alat'
+      path: '/alat'
+      fullPath: '/alat'
+      preLoaderRoute: typeof AuthenticatedAlatRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/cms': {
+      id: '/_authenticated/cms'
+      path: '/cms'
+      fullPath: '/cms'
+      preLoaderRoute: typeof AuthenticatedCmsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/dompet': {
+      id: '/_authenticated/dompet'
+      path: '/dompet'
+      fullPath: '/dompet'
+      preLoaderRoute: typeof AuthenticatedDompetRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/jamaah': {
+      id: '/_authenticated/jamaah'
+      path: '/jamaah'
+      fullPath: '/jamaah'
+      preLoaderRoute: typeof AuthenticatedJamaahRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/jaringan': {
+      id: '/_authenticated/jaringan'
+      path: '/jaringan'
+      fullPath: '/jaringan'
+      preLoaderRoute: typeof AuthenticatedJaringanRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/leaderboard': {
+      id: '/_authenticated/leaderboard'
+      path: '/leaderboard'
+      fullPath: '/leaderboard'
+      preLoaderRoute: typeof AuthenticatedLeaderboardRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/muslim': {
+      id: '/_authenticated/muslim'
+      path: '/muslim'
+      fullPath: '/muslim'
+      preLoaderRoute: typeof AuthenticatedMuslimRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/segmentasi': {
+      id: '/_authenticated/segmentasi'
+      path: '/segmentasi'
+      fullPath: '/segmentasi'
+      preLoaderRoute: typeof AuthenticatedSegmentasiRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/teritorial': {
+      id: '/_authenticated/teritorial'
+      path: '/teritorial'
+      fullPath: '/teritorial'
+      preLoaderRoute: typeof AuthenticatedTeritorialRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+  }
+}
+
+interface AuthenticatedRouteRouteChildren {
   AuthenticatedAkademiRoute: typeof AuthenticatedAkademiRoute
   AuthenticatedAlatRoute: typeof AuthenticatedAlatRoute
   AuthenticatedCmsRoute: typeof AuthenticatedCmsRoute
@@ -174,89 +294,7 @@ export interface RootRouteChildren {
   AuthenticatedIndexRoute: typeof AuthenticatedIndexRoute
 }
 
-declare module '@tanstack/react-router' {
-  interface FileRoutesByPath {
-    '/_authenticated/': {
-      id: '/_authenticated/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof AuthenticatedIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/_authenticated/akademi': {
-      id: '/_authenticated/akademi'
-      path: '/akademi'
-      fullPath: '/akademi'
-      preLoaderRoute: typeof AuthenticatedAkademiRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/_authenticated/alat': {
-      id: '/_authenticated/alat'
-      path: '/alat'
-      fullPath: '/alat'
-      preLoaderRoute: typeof AuthenticatedAlatRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/_authenticated/cms': {
-      id: '/_authenticated/cms'
-      path: '/cms'
-      fullPath: '/cms'
-      preLoaderRoute: typeof AuthenticatedCmsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/_authenticated/dompet': {
-      id: '/_authenticated/dompet'
-      path: '/dompet'
-      fullPath: '/dompet'
-      preLoaderRoute: typeof AuthenticatedDompetRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/_authenticated/jamaah': {
-      id: '/_authenticated/jamaah'
-      path: '/jamaah'
-      fullPath: '/jamaah'
-      preLoaderRoute: typeof AuthenticatedJamaahRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/_authenticated/jaringan': {
-      id: '/_authenticated/jaringan'
-      path: '/jaringan'
-      fullPath: '/jaringan'
-      preLoaderRoute: typeof AuthenticatedJaringanRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/_authenticated/leaderboard': {
-      id: '/_authenticated/leaderboard'
-      path: '/leaderboard'
-      fullPath: '/leaderboard'
-      preLoaderRoute: typeof AuthenticatedLeaderboardRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/_authenticated/muslim': {
-      id: '/_authenticated/muslim'
-      path: '/muslim'
-      fullPath: '/muslim'
-      preLoaderRoute: typeof AuthenticatedMuslimRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/_authenticated/segmentasi': {
-      id: '/_authenticated/segmentasi'
-      path: '/segmentasi'
-      fullPath: '/segmentasi'
-      preLoaderRoute: typeof AuthenticatedSegmentasiRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/_authenticated/teritorial': {
-      id: '/_authenticated/teritorial'
-      path: '/teritorial'
-      fullPath: '/teritorial'
-      preLoaderRoute: typeof AuthenticatedTeritorialRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-  }
-}
-
-const rootRouteChildren: RootRouteChildren = {
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedAkademiRoute: AuthenticatedAkademiRoute,
   AuthenticatedAlatRoute: AuthenticatedAlatRoute,
   AuthenticatedCmsRoute: AuthenticatedCmsRoute,
@@ -268,6 +306,14 @@ const rootRouteChildren: RootRouteChildren = {
   AuthenticatedSegmentasiRoute: AuthenticatedSegmentasiRoute,
   AuthenticatedTeritorialRoute: AuthenticatedTeritorialRoute,
   AuthenticatedIndexRoute: AuthenticatedIndexRoute,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
+const rootRouteChildren: RootRouteChildren = {
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  AuthRoute: AuthRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
