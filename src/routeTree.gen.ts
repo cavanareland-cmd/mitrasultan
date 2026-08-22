@@ -21,6 +21,7 @@ import { Route as AuthenticatedJaringanRouteImport } from './routes/_authenticat
 import { Route as AuthenticatedLeaderboardRouteImport } from './routes/_authenticated/leaderboard'
 import { Route as AuthenticatedMuslimRouteImport } from './routes/_authenticated/muslim'
 import { Route as AuthenticatedPeranRouteImport } from './routes/_authenticated/peran'
+import { Route as AuthenticatedSegmentasiRouteImport } from './routes/_authenticated/segmentasi'
 import { Route as AuthenticatedTeritorialRouteImport } from './routes/_authenticated/teritorial'
 
 const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
@@ -83,6 +84,11 @@ const AuthenticatedPeranRoute = AuthenticatedPeranRouteImport.update({
   path: '/peran',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedSegmentasiRoute = AuthenticatedSegmentasiRouteImport.update({
+  id: '/segmentasi',
+  path: '/segmentasi',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedTeritorialRoute = AuthenticatedTeritorialRouteImport.update({
   id: '/teritorial',
   path: '/teritorial',
@@ -101,6 +107,7 @@ export interface FileRoutesByFullPath {
   '/leaderboard': typeof AuthenticatedLeaderboardRoute
   '/muslim': typeof AuthenticatedMuslimRoute
   '/peran': typeof AuthenticatedPeranRoute
+  '/segmentasi': typeof AuthenticatedSegmentasiRoute
   '/teritorial': typeof AuthenticatedTeritorialRoute
 }
 export interface FileRoutesByTo {
@@ -114,6 +121,7 @@ export interface FileRoutesByTo {
   '/leaderboard': typeof AuthenticatedLeaderboardRoute
   '/muslim': typeof AuthenticatedMuslimRoute
   '/peran': typeof AuthenticatedPeranRoute
+  '/segmentasi': typeof AuthenticatedSegmentasiRoute
   '/teritorial': typeof AuthenticatedTeritorialRoute
   '/': typeof AuthenticatedIndexRoute
 }
@@ -130,6 +138,7 @@ export interface FileRoutesById {
   '/_authenticated/leaderboard': typeof AuthenticatedLeaderboardRoute
   '/_authenticated/muslim': typeof AuthenticatedMuslimRoute
   '/_authenticated/peran': typeof AuthenticatedPeranRoute
+  '/_authenticated/segmentasi': typeof AuthenticatedSegmentasiRoute
   '/_authenticated/teritorial': typeof AuthenticatedTeritorialRoute
   '/_authenticated/': typeof AuthenticatedIndexRoute
 }
@@ -147,6 +156,7 @@ export interface FileRouteTypes {
     | '/leaderboard'
     | '/muslim'
     | '/peran'
+    | '/segmentasi'
     | '/teritorial'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -160,6 +170,7 @@ export interface FileRouteTypes {
     | '/leaderboard'
     | '/muslim'
     | '/peran'
+    | '/segmentasi'
     | '/teritorial'
     | '/'
   id:
@@ -175,6 +186,7 @@ export interface FileRouteTypes {
     | '/_authenticated/leaderboard'
     | '/_authenticated/muslim'
     | '/_authenticated/peran'
+    | '/_authenticated/segmentasi'
     | '/_authenticated/teritorial'
     | '/_authenticated/'
   fileRoutesById: FileRoutesById
@@ -270,6 +282,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedPeranRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/segmentasi': {
+      id: '/_authenticated/segmentasi'
+      path: '/segmentasi'
+      fullPath: '/segmentasi'
+      preLoaderRoute: typeof AuthenticatedSegmentasiRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/teritorial': {
       id: '/_authenticated/teritorial'
       path: '/teritorial'
@@ -290,6 +309,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedLeaderboardRoute: typeof AuthenticatedLeaderboardRoute
   AuthenticatedMuslimRoute: typeof AuthenticatedMuslimRoute
   AuthenticatedPeranRoute: typeof AuthenticatedPeranRoute
+  AuthenticatedSegmentasiRoute: typeof AuthenticatedSegmentasiRoute
   AuthenticatedTeritorialRoute: typeof AuthenticatedTeritorialRoute
   AuthenticatedIndexRoute: typeof AuthenticatedIndexRoute
 }
@@ -304,6 +324,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedLeaderboardRoute: AuthenticatedLeaderboardRoute,
   AuthenticatedMuslimRoute: AuthenticatedMuslimRoute,
   AuthenticatedPeranRoute: AuthenticatedPeranRoute,
+  AuthenticatedSegmentasiRoute: AuthenticatedSegmentasiRoute,
   AuthenticatedTeritorialRoute: AuthenticatedTeritorialRoute,
   AuthenticatedIndexRoute: AuthenticatedIndexRoute,
 }
