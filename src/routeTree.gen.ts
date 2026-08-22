@@ -23,6 +23,7 @@ import { Route as AuthenticatedMuslimRouteImport } from './routes/_authenticated
 import { Route as AuthenticatedPeranRouteImport } from './routes/_authenticated/peran'
 import { Route as AuthenticatedSegmentasiRouteImport } from './routes/_authenticated/segmentasi'
 import { Route as AuthenticatedTeritorialRouteImport } from './routes/_authenticated/teritorial'
+import { Route as AuthenticatedSegmentasiSplatRouteImport } from './routes/_authenticated.segmentasi.$'
 
 const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
   id: '/_authenticated',
@@ -94,6 +95,12 @@ const AuthenticatedTeritorialRoute = AuthenticatedTeritorialRouteImport.update({
   path: '/teritorial',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedSegmentasiSplatRoute =
+  AuthenticatedSegmentasiSplatRouteImport.update({
+    id: '/$',
+    path: '/$',
+    getParentRoute: () => AuthenticatedSegmentasiRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof AuthenticatedIndexRoute
@@ -107,8 +114,9 @@ export interface FileRoutesByFullPath {
   '/leaderboard': typeof AuthenticatedLeaderboardRoute
   '/muslim': typeof AuthenticatedMuslimRoute
   '/peran': typeof AuthenticatedPeranRoute
-  '/segmentasi': typeof AuthenticatedSegmentasiRoute
+  '/segmentasi': typeof AuthenticatedSegmentasiRouteWithChildren
   '/teritorial': typeof AuthenticatedTeritorialRoute
+  '/segmentasi/$': typeof AuthenticatedSegmentasiSplatRoute
 }
 export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
@@ -121,9 +129,10 @@ export interface FileRoutesByTo {
   '/leaderboard': typeof AuthenticatedLeaderboardRoute
   '/muslim': typeof AuthenticatedMuslimRoute
   '/peran': typeof AuthenticatedPeranRoute
-  '/segmentasi': typeof AuthenticatedSegmentasiRoute
+  '/segmentasi': typeof AuthenticatedSegmentasiRouteWithChildren
   '/teritorial': typeof AuthenticatedTeritorialRoute
   '/': typeof AuthenticatedIndexRoute
+  '/segmentasi/$': typeof AuthenticatedSegmentasiSplatRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -138,9 +147,10 @@ export interface FileRoutesById {
   '/_authenticated/leaderboard': typeof AuthenticatedLeaderboardRoute
   '/_authenticated/muslim': typeof AuthenticatedMuslimRoute
   '/_authenticated/peran': typeof AuthenticatedPeranRoute
-  '/_authenticated/segmentasi': typeof AuthenticatedSegmentasiRoute
+  '/_authenticated/segmentasi': typeof AuthenticatedSegmentasiRouteWithChildren
   '/_authenticated/teritorial': typeof AuthenticatedTeritorialRoute
   '/_authenticated/': typeof AuthenticatedIndexRoute
+  '/_authenticated/segmentasi/$': typeof AuthenticatedSegmentasiSplatRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -158,6 +168,7 @@ export interface FileRouteTypes {
     | '/peran'
     | '/segmentasi'
     | '/teritorial'
+    | '/segmentasi/$'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/auth'
@@ -173,6 +184,7 @@ export interface FileRouteTypes {
     | '/segmentasi'
     | '/teritorial'
     | '/'
+    | '/segmentasi/$'
   id:
     | '__root__'
     | '/_authenticated'
@@ -189,6 +201,7 @@ export interface FileRouteTypes {
     | '/_authenticated/segmentasi'
     | '/_authenticated/teritorial'
     | '/_authenticated/'
+    | '/_authenticated/segmentasi/$'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -296,8 +309,29 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedTeritorialRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/segmentasi/$': {
+      id: '/_authenticated/segmentasi/$'
+      path: '/$'
+      fullPath: '/segmentasi/$'
+      preLoaderRoute: typeof AuthenticatedSegmentasiSplatRouteImport
+      parentRoute: typeof AuthenticatedSegmentasiRoute
+    }
   }
 }
+
+interface AuthenticatedSegmentasiRouteChildren {
+  AuthenticatedSegmentasiSplatRoute: typeof AuthenticatedSegmentasiSplatRoute
+}
+
+const AuthenticatedSegmentasiRouteChildren: AuthenticatedSegmentasiRouteChildren =
+  {
+    AuthenticatedSegmentasiSplatRoute: AuthenticatedSegmentasiSplatRoute,
+  }
+
+const AuthenticatedSegmentasiRouteWithChildren =
+  AuthenticatedSegmentasiRoute._addFileChildren(
+    AuthenticatedSegmentasiRouteChildren,
+  )
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedAkademiRoute: typeof AuthenticatedAkademiRoute
@@ -309,7 +343,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedLeaderboardRoute: typeof AuthenticatedLeaderboardRoute
   AuthenticatedMuslimRoute: typeof AuthenticatedMuslimRoute
   AuthenticatedPeranRoute: typeof AuthenticatedPeranRoute
-  AuthenticatedSegmentasiRoute: typeof AuthenticatedSegmentasiRoute
+  AuthenticatedSegmentasiRoute: typeof AuthenticatedSegmentasiRouteWithChildren
   AuthenticatedTeritorialRoute: typeof AuthenticatedTeritorialRoute
   AuthenticatedIndexRoute: typeof AuthenticatedIndexRoute
 }
@@ -324,7 +358,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedLeaderboardRoute: AuthenticatedLeaderboardRoute,
   AuthenticatedMuslimRoute: AuthenticatedMuslimRoute,
   AuthenticatedPeranRoute: AuthenticatedPeranRoute,
-  AuthenticatedSegmentasiRoute: AuthenticatedSegmentasiRoute,
+  AuthenticatedSegmentasiRoute: AuthenticatedSegmentasiRouteWithChildren,
   AuthenticatedTeritorialRoute: AuthenticatedTeritorialRoute,
   AuthenticatedIndexRoute: AuthenticatedIndexRoute,
 }
