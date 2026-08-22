@@ -2,19 +2,19 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect } from "react";
 import { toast } from "sonner";
 
-export const Route = createFileRoute("/_authenticated/segmentasi")({
-  head: () => ({
-    meta: [
-      { title: "Segmentasi Jamaah — Dialihkan" },
-      { name: "description", content: "Halaman Segmentasi Jamaah telah dipindah ke Manajemen Jamaah." },
-      { name: "robots", content: "noindex" },
-    ],
-  }),
-  component: AlihkanSegmentasi,
+const judulMeta = "Segmentasi Jamaah — Dialihkan";
+const deskripsiMeta = "Halaman Segmentasi Jamaah telah dipindah ke Manajemen Jamaah.";
+
+export const metaAlihkan = () => ({
+  meta: [
+    { title: judulMeta },
+    { name: "description", content: deskripsiMeta },
+    { name: "robots", content: "noindex" },
+  ],
 });
 
-/** URL lama /segmentasi diarahkan otomatis ke /jamaah dengan pesan yang jelas. */
-function AlihkanSegmentasi() {
+/** Komponen alih yang dipakai semua varian URL /segmentasi lama. */
+export function AlihkanSegmentasi() {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -35,3 +35,8 @@ function AlihkanSegmentasi() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/_authenticated/segmentasi")({
+  head: metaAlihkan,
+  component: AlihkanSegmentasi,
+});
