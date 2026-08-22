@@ -11,6 +11,7 @@ import {
   Trophy,
   MoonStar,
   Calculator,
+  ShieldCheck,
 } from "lucide-react";
 import logoAsset from "@/assets/sultan-haramain-logo.png.asset.json";
 
@@ -44,6 +45,7 @@ const menuPendukung = [
   { judul: "Leaderboard", url: "/leaderboard", icon: Trophy },
   { judul: "Alat Muslim Harian", url: "/muslim", icon: MoonStar },
   { judul: "Alat & Simulasi", url: "/alat", icon: Calculator },
+  { judul: "Manajemen Peran", url: "/peran", icon: ShieldCheck },
 ] as const;
 
 export function AppSidebar() {
